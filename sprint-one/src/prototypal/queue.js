@@ -15,18 +15,18 @@ var queueMethods = {};
 queueMethods.enqueue = function(val) {
   this.storage[this.max] = val;
   this.max++;
-}
+};
 
 queueMethods.dequeue = function() {
   var val = this.storage[this.min];
   delete this.storage[this.min];
   this.min++;
   return val;
-}
+};
 
 queueMethods.size = function() {
   if(this.max - this.min < 0) {
     return 0;
   }
   return this.max - this.min;
-}
+};

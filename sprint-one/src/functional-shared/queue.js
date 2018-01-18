@@ -31,4 +31,3 @@ var queueMethods = {
     return this.max - this.min;
   }
 };
-
