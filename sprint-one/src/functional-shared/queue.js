@@ -8,7 +8,6 @@ var Queue = function() {
   instance.max = 0;
 
   _.extend(instance, queueMethods);
-
   return instance;
 };
 
