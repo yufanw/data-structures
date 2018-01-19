@@ -22,7 +22,7 @@ treeMethods.contains = function(target) {
   }
   for (var i = 0; i < this.children.length; i++) {
     if (!doesContain) {
-    doesContain = this.children[i].contains(target);
+      doesContain = this.children[i].contains(target);
     }
   }
   return doesContain;
