@@ -9,7 +9,6 @@ HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
   if (tuples) {
-    console.log(tuples);
     for (let i = 0; i < tuples.length; i++) {
       if (tuples[i][0] === k) {
         tuples[i][1] = v;
