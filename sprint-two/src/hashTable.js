@@ -8,7 +8,7 @@ var HashTable = function() {
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
-  if(tuples) {
+  if (tuples) {
     console.log(tuples);
     for (let i = 0; i < tuples.length; i++) {
       if (tuples[i][0] === k) {
@@ -18,7 +18,7 @@ HashTable.prototype.insert = function(k, v) {
       }
     }
   } else {
-    this._storage.set(index,[[k, v]]);
+    this._storage.set(index, [[k, v]]);
   }
 };
 
