@@ -5,7 +5,7 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
 };
 
-HashTable.prototype.insert = function(k, v) {
+HashTable.prototype.insert = function(k, v) { //best case: O(1), worst case: O(n)
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
   if (tuples) {
@@ -21,7 +21,7 @@ HashTable.prototype.insert = function(k, v) {
   }
 };
 
-HashTable.prototype.retrieve = function(k) {
+HashTable.prototype.retrieve = function(k) { //best case: O(1), worst case: O(n)
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
   if (tuples) {
@@ -33,7 +33,7 @@ HashTable.prototype.retrieve = function(k) {
   }
 };
 
-HashTable.prototype.remove = function(k) {
+HashTable.prototype.remove = function(k) { //best case: O(1), worst case: O(n)
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
   if (tuples) {
