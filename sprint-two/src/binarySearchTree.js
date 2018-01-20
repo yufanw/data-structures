@@ -6,7 +6,7 @@ var BinarySearchTree = function(value) {
 
 };
 
-BinarySearchTree.prototype.insert = function (value) {
+BinarySearchTree.prototype.insert = function (value) { // n(log n)
   if (value > this.value) {
     if (!this.right) {
       this.right = new BinarySearchTree(value);
@@ -22,7 +22,7 @@ BinarySearchTree.prototype.insert = function (value) {
   }
 }
 
-BinarySearchTree.prototype.contains = function (value) {
+BinarySearchTree.prototype.contains = function (value) { // n(log n)
   var doesContain = false;
   if (this.value === value) {
     doesContain = true;
@@ -34,7 +34,7 @@ BinarySearchTree.prototype.contains = function (value) {
   return doesContain;
 };
 
-BinarySearchTree.prototype.depthFirstLog = function (func) {
+BinarySearchTree.prototype.depthFirstLog = function (func) { // n(log n)
   func(this.value);
   if (this.left) {
     this.left.depthFirstLog(func);
