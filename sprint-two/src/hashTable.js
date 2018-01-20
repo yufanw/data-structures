@@ -35,14 +35,21 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.each(function(el, i, storage) {
-    if (i === index) {
-      storage.splice(i, 1);
+  var tuples = this._storage.get(index);
+  if (tuples) {
+    for (let i = 0; i < tuples.length; i++) {
+      if (tuples[i][0] === k) {
+        tuples.splice(i, 1);
+      }
     }
-  });
+  }
 };
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+
+
+
