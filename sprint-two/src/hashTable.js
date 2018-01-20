@@ -9,8 +9,8 @@ HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   if(this._storage.get(index)) {
     this._storage.each(function(el, i, storage) {
-      if (storage[index][i][0] === k) {
-        this._storage.set(index,[[k, v]]);
+      if (storage[index][i] && storage[index][i][0] === k) {
+        storage[index][i][1] = v;
       } else {
         storage[index].push([k, v]);
       }
@@ -22,7 +22,6 @@ HashTable.prototype.insert = function(k, v) {
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-
   if (this._storage.get(index)) {
     var tuples = this._storage.get(index);
     for (let i = 0; i < tuples.length; i++) {
