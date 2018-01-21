@@ -3,9 +3,25 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this.counter = 0;
 };
 
 HashTable.prototype.insert = function(k, v) { //best case: O(1), worst case: O(n)
+  if (this.counter / this._limit >= 0.75) {
+    this._limit = this._limit * 2
+    var temp = Object.assign({}, this._storage);
+    this._storage = LimitedArray(this._limit);
+    this.counter = 0;
+    var hash = this;
+    temp.each(function(el) {
+      if (el) {
+        for (let j = 0; j < el.length; j++) {
+          hash.insert(el[j][0], el[j][1]);
+        }
+      }
+    });
+  }
+
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
   if (tuples) {
@@ -19,6 +35,7 @@ HashTable.prototype.insert = function(k, v) { //best case: O(1), worst case: O(n
   } else {
     this._storage.set(index, [[k, v]]);
   }
+  this.counter++;
 };
 
 HashTable.prototype.retrieve = function(k) { //best case: O(1), worst case: O(n)
@@ -34,6 +51,22 @@ HashTable.prototype.retrieve = function(k) { //best case: O(1), worst case: O(n)
 };
 
 HashTable.prototype.remove = function(k) { //best case: O(1), worst case: O(n)
+
+  if (this.counter / this._limit <= 0.25) {
+    this._limit = this._limit / 2
+    var temp = Object.assign({}, this._storage);
+    this._storage = LimitedArray(this._limit);
+    this.counter = 0;
+    var hash = this;
+    temp.each(function(el) {
+      if (el) {
+        for (let j = 0; j < el.length; j++) {
+          hash.insert(el[j][0], el[j][1]);
+        }
+      }
+    });
+  }
+
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuples = this._storage.get(index);
   if (tuples) {
@@ -43,6 +76,7 @@ HashTable.prototype.remove = function(k) { //best case: O(1), worst case: O(n)
       }
     }
   }
+  this.counter--;
 };
 
 
