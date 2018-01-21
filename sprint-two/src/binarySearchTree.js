@@ -20,7 +20,7 @@ BinarySearchTree.prototype.insert = function (value) { // n(log n)
       this.left.insert(value);
     }
   }
-}
+};
 
 BinarySearchTree.prototype.contains = function (value) { // n(log n)
   var doesContain = false;

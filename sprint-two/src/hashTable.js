@@ -7,8 +7,9 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) { //best case: O(1), worst case: O(n)
+
   if (this.counter / this._limit >= 0.75) {
-    this._limit = this._limit * 2
+    this._limit = this._limit * 2;
     var temp = Object.assign({}, this._storage);
     this._storage = LimitedArray(this._limit);
     this.counter = 0;
@@ -53,7 +54,7 @@ HashTable.prototype.retrieve = function(k) { //best case: O(1), worst case: O(n)
 HashTable.prototype.remove = function(k) { //best case: O(1), worst case: O(n)
 
   if (this.counter / this._limit <= 0.25) {
-    this._limit = this._limit / 2
+    this._limit = this._limit / 2;
     var temp = Object.assign({}, this._storage);
     this._storage = LimitedArray(this._limit);
     this.counter = 0;
